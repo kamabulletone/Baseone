@@ -25,7 +25,10 @@ public class HibernateBase implements Strategy {
         this.password = password;
         this.db_url = db_url;
 
+
     }
+
+
 
     public void createconnection()  {
 

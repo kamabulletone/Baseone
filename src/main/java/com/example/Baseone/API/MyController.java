@@ -61,7 +61,8 @@ public class MyController {
 
     }
     @RequestMapping(value = "/strategy", method = RequestMethod. POST)
-    public void strategyswitch(String str){
+
+    public void strategyswitch(@RequestBody String str){
 
         if (str.toUpperCase().equals("JDBC")) {
             dbo = new JDBCBase(db_url,user,password);
