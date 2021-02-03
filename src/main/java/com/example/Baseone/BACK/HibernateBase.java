@@ -1,6 +1,9 @@
 package com.example.Baseone.BACK;
 
 import com.example.Baseone.MODEL.RecordModel;
+import com.fasterxml.classmate.AnnotationConfiguration;
+import org.apache.tomcat.jni.File;
+import org.hibernate.SessionFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -10,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.*;
 
 public class HibernateBase implements Strategy {
     String db_url;
@@ -26,6 +30,31 @@ public class HibernateBase implements Strategy {
         this.db_url = db_url;
 
 
+    }
+
+    private static final SessionFactory sessionFactory = buildSessionFactory();
+
+    private static SessionFactory buildSessionFactory()
+    {
+        try
+        {
+            // Create the SessionFactory from hibernate.cfg.xml
+            return new AnnotationConfiguration().configure(new File("hibernate.cfg.xml")).buildSessionFactory();
+        }
+        catch (Throwable ex) {
+            // Make sure you log the exception, as it might be swallowed
+            System.err.println("Initial SessionFactory creation failed." + ex);
+            throw new ExceptionInInitializerError(ex);
+        }
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static void shutdown() {
+        // Close caches and connection pools
+        getSessionFactory().close();
     }
 
 

@@ -5,6 +5,7 @@ import com.example.Baseone.BACK.HibernateBase;
 import com.example.Baseone.BACK.JDBCBase;
 import com.example.Baseone.BACK.Strategy;
 import com.example.Baseone.MODEL.RecordModel;
+import com.example.Baseone.Reps.ModelRepository;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,6 +31,9 @@ public class MyController {
     @Autowired
     @Value("${user.db_url}")
     private String db_url;
+
+    @Autowired
+    ModelRepository reps;
 
     private Strategy dbo = null;
 
