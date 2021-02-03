@@ -10,7 +10,6 @@ import java.sql.SQLException;
 
 @SpringBootApplication
 public class BaseoneApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(BaseoneApplication.class, args);
 	}
